@@ -21,3 +21,6 @@ jobs:
       - run:
           name: test
           command: npm --prefix ./frontend test
+      - run:
+          name: build
+          command: npm --prefix ./frontend run build
