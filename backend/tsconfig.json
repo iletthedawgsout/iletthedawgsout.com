@@ -6,6 +6,6 @@
         "noImplicitReturns": true,
         "removeComments": true,
         "sourceMap": true,
-        "outDir": "dist"
+        "outDir": "build"
     },
 }
