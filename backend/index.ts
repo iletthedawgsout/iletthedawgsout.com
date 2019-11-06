@@ -6,9 +6,6 @@ const app = express();
 const buildDir = path.join("..", "frontend", "build");
 const indexPath = path.join(buildDir, "index.html");
 
-console.log(`buildDir: ${buildDir}`);
-console.log(`indexPath: ${indexPath}`);
-
 app.use(express.static(buildDir));
 app.get('/', function(req, res) {
   res.sendFile(indexPath);
