@@ -25,7 +25,7 @@ program
         const indexPath = path.join(buildDir, "index.html");
         const port = isProd ? 80 : 9000;
 
-        console.log(`Starting server at port ${port}. Serving files from ${buildDir}`);
+        console.log(`Starting server at port ${port}. Serving files from ${buildDir} and go dawgs`);
 
         startServer(buildDir, indexPath, port);
     });
