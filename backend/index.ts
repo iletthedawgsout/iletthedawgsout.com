@@ -20,9 +20,10 @@ program
       "Use production mode"
     )
     .action(options => {
-        const buildDir = !!options.production ? "/home/iletthedawgsout/www" : path.join("..", "frontend", "build");
+        const isProd = !!options.production;
+        const buildDir = isProd ? "/home/iletthedawgsout/www" : path.join("..", "frontend", "build");
         const indexPath = path.join(buildDir, "index.html");
-        const port = 9000;
+        const port = isProd ? 80 : 9000;
 
         console.log(`Starting server at port ${port}. Serving files from ${buildDir}`);
 
