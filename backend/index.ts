@@ -20,7 +20,7 @@ program
       "Use production mode"
     )
     .action(options => {
-        const buildDir = !!options.production ? "/var/www" : path.join("..", "frontend", "build");
+        const buildDir = !!options.production ? "/home/iletthedawgsout/www" : path.join("..", "frontend", "build");
         const indexPath = path.join(buildDir, "index.html");
         const port = 9000;
 
