@@ -4,8 +4,8 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "start": "npm run build && node build/index.js",
-    "serve": "npm run build && node build/index.js --production",
+    "start": "npm run build && node build/index.js serve",
+    "serve": "npm run build && node build/index.js serve --production",
     "build": "tsc"
   },
   "repository": {

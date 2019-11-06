@@ -13,7 +13,7 @@ const startServer = (buildDir: string, indexPath: string, port: number) => {
 };
 
 program
-    .command("start")
+    .command("serve")
     .description("Start the server")
     .option(
       "-p, --production",
