@@ -29,3 +29,5 @@ program
 
         startServer(buildDir, indexPath, port);
     });
+
+program.parse(process.argv);
