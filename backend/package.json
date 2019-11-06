@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/iletthedawgsout/iletthedawgsout.com#readme",
   "devDependencies": {
+    "@types/express": "^4.17.2",
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
