@@ -1,0 +1,10 @@
+
+[Unit]
+Description=I Let the Dawgs Out backend
+
+[Service]
+ExecStart=/usr/bin/node build/index.js serve --production
+WorkingDirectory=/home/iletthedawgsout/iletthedawgsout.com/backend
+
+[Install]
+WantedBy=multi-user.target
