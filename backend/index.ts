@@ -20,7 +20,7 @@ program
       "Use production mode"
     )
     .option(
-        "-a, --asset-dir",
+        "-a, --asset-dir <assetDir>",
         "Path to assert dir"
     )
     .parse(process.argv);

@@ -17,3 +17,9 @@ sudo systemctl start iletthedawgsout-daemon
 
 Restart service
 sudo systemctl restart iletthedawgsout-daemon
+
+Reload systemd after editing conf file
+sudo systemctl daemon-reload
+
+View logs for daemon
+journalctl -u iletthedawgsout-daemon.service
