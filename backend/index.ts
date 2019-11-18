@@ -12,12 +12,17 @@ const startServer = (buildDir: string, indexPath: string, port: number) => {
     app.listen(port);
 };
 
+const fail = (message: string) => {
+    console.log(`Error: ${message}`);
+    process.exit(1);
+}
+
 program
     .version("1.0.0")
     .description("Start the server")
     .option(
-      "-p, --production",
-      "Use production mode"
+      "-p, --port <port>",
+      "Port"
     )
     .option(
         "-a, --asset-dir <assetDir>",
@@ -25,15 +30,16 @@ program
     )
     .parse(process.argv);
 
-const isProd = !!program.production;
-let assetDir = program.assetDir;
-if (!assetDir) {
-    // Fallback to sensible defaults if path not provided
-    assetDir = isProd ? "/home/iletthedawgsout/www" : path.join("..", "frontend", "build");
+let { port, assetDir } = program;
+
+if (!port) {
+    fail("Missing port");
 }
+
+if (!assetDir) {
+    fail("Missing assertDir");
+}
+
 const indexPath = path.join(assetDir, "index.html");
-const port = isProd ? 80 : 9000;
-
 console.log(`Starting server at port ${port}. Serving files from ${assetDir} and go dawgs`);
-
 startServer(assetDir, indexPath, port);
