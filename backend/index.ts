@@ -13,21 +13,27 @@ const startServer = (buildDir: string, indexPath: string, port: number) => {
 };
 
 program
-    .command("serve")
+    .version("1.0.0")
     .description("Start the server")
     .option(
       "-p, --production",
       "Use production mode"
     )
-    .action(options => {
-        const isProd = !!options.production;
-        const buildDir = isProd ? "/home/iletthedawgsout/www" : path.join("..", "frontend", "build");
-        const indexPath = path.join(buildDir, "index.html");
-        const port = isProd ? 80 : 9000;
+    .option(
+        "-a, --asset-dir",
+        "Path to assert dir"
+    )
+    .parse(process.argv);
 
-        console.log(`Starting server at port ${port}. Serving files from ${buildDir} and go dawgs`);
+const isProd = !!program.production;
+let assetDir = program.assetDir;
+if (!assetDir) {
+    // Fallback to sensible defaults if path not provided
+    assetDir = isProd ? "/home/iletthedawgsout/www" : path.join("..", "frontend", "build");
+}
+const indexPath = path.join(assetDir, "index.html");
+const port = isProd ? 80 : 9000;
 
-        startServer(buildDir, indexPath, port);
-    });
+console.log(`Starting server at port ${port}. Serving files from ${assetDir} and go dawgs`);
 
-program.parse(process.argv);
+startServer(assetDir, indexPath, port);
