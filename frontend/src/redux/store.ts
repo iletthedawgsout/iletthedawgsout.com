@@ -1,11 +1,8 @@
 import { rootReducer } from './reducers'
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { configureStore } from "@reduxjs/toolkit"
 
-const composeEnhancers = composeWithDevTools({
-  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+export const store = configureStore({
+  reducer: rootReducer
 });
-export const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
-//   applyMiddleware(...middleware),
-  // other store enhancers if any
-));
+
+export type AppDispatch = typeof store.dispatch
