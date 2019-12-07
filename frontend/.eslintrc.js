@@ -3,10 +3,7 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard'
-  ],
+  extends: ["eslint:recommended", "plugin:react/recommended"],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
@@ -24,5 +21,13 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    // note you must disable the base rule as it can report incorrect errors
+    "no-unused-vars": "off",
+    "no-undef": "off"
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
 }
