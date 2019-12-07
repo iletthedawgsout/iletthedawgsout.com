@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { RootAction } from "./actions";
-import { createReducer, PayloadAction } from '@reduxjs/toolkit';
+import { RootAction } from './actions'
+import { createReducer, PayloadAction } from '@reduxjs/toolkit'
 
 const todos = (state: number[] = [], action: RootAction) => {
   switch (action.type) {
@@ -12,7 +12,7 @@ const todos = (state: number[] = [], action: RootAction) => {
     default:
       return state
   }
-};
+}
 
 const counterReducer = createReducer(0, {
   increment: (state, action: PayloadAction<number>) => state + action.payload
@@ -21,6 +21,6 @@ const counterReducer = createReducer(0, {
 export const rootReducer = combineReducers({
   todos,
   counterReducer
-});
+})
 
 export type RootState = ReturnType<typeof rootReducer>;

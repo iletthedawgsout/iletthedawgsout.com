@@ -1,11 +1,11 @@
-import React from 'react';
-import { store } from "./redux/store";
+import React from 'react'
+import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import './App.css';
-import { Husky } from "./components";
+import './App.css'
+import { Husky } from './components'
 
 const App: React.FC = () => {
-  const onPress = () => console.log('woof');
+  const onPress = () => console.log('woof')
   return (
     <Provider store={store}>
       <div className="App">
@@ -25,7 +25,7 @@ const App: React.FC = () => {
         </header>
       </div>
     </Provider>
-  );
+  )
 }
 
-export default App;
+export default App
