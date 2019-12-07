@@ -1,7 +1,7 @@
 import { put, takeEvery, all } from 'redux-saga/effects'
 import { incrementCounter } from './actions'
 
-const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 function * incrementAsync () {
   yield delay(1000)

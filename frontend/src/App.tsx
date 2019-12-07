@@ -1,7 +1,6 @@
 import React from 'react'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import './App.css'
 import { Husky } from './components'
 
 const App: React.FC = () => {
@@ -13,7 +12,7 @@ const App: React.FC = () => {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <Husky onPress={onPress} />>
+          <Husky onPress={onPress} />
           <a
             className="App-link"
             href="https://reactjs.org"
