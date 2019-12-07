@@ -1,4 +1,5 @@
 import { put, takeEvery, all } from 'redux-saga/effects'
+import { incrementCounter } from "./actions";
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
 
@@ -12,7 +13,7 @@ function* incrementAsync() {
 }
 
 function* watchIncrementAsync() {
-  yield takeEvery('ADD_TODO', incrementAsync)
+  yield takeEvery(incrementCounter.toString(), incrementAsync)
 }
 
 // notice how we now only export the rootSaga

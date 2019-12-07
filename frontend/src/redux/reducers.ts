@@ -4,7 +4,7 @@ import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 
 const todos = (state: number[] = [], action: RootAction) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'INCREMENT_COUNTER':
       return [
         ...state,
         1
