@@ -1,22 +1,14 @@
-let nextTodoId = 0
-export const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
+export const ADD_TODO = "ADD_TODO";
+export const REMOVE_TODO = "REMOVE_TODO";
+
+export const addTodo = (text: string) => ({
+  type: ADD_TODO,
   text
-})
+});
 
-export const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
-})
-
-export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
+export const removeTodo = (id: number) => ({
+  type: REMOVE_TODO,
   id
-})
+});
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
-}
+export type RootAction = ReturnType<typeof addTodo> | ReturnType<typeof removeTodo>;
