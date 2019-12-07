@@ -5,6 +5,7 @@ import './App.css';
 import { Husky } from "./components";
 
 const App: React.FC = () => {
+  const onPress = () => console.log('woof');
   return (
     <Provider store={store}>
       <div className="App">
@@ -12,7 +13,7 @@ const App: React.FC = () => {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <Husky></Husky>
+          <Husky onPress={onPress} />>
           <a
             className="App-link"
             href="https://reactjs.org"

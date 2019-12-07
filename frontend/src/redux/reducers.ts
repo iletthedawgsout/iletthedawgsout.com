@@ -21,4 +21,6 @@ const counterReducer = createReducer(0, {
 export const rootReducer = combineReducers({
   todos,
   counterReducer
-})
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
