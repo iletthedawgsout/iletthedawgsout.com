@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { incrementCounter } from '../redux/actions'
 
 interface Props {
-    onPress: () => any;
+  onPress: () => any;
 }
 
 export const Husky = (props: Props) => {
