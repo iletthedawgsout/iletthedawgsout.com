@@ -2,6 +2,7 @@ import React from 'react'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import { Husky } from './components'
+import { Button } from 'semantic-ui-react'
 
 const App: React.FC = () => {
   const onPress = () => console.log('woof')
@@ -13,14 +14,7 @@ const App: React.FC = () => {
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
           <Husky onPress={onPress} />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GO DAWGS
-          </a>
+          <Button onClick={onPress} primary>Click Here</Button>
         </header>
       </div>
     </Provider>

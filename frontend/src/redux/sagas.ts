@@ -3,18 +3,16 @@ import { incrementCounter } from './actions'
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-function * incrementAsync () {
+function* incrementAsync() {
   yield delay(1000)
   yield put({ type: 'INCREMENT' })
 }
 
-function * watchIncrementAsync () {
+function* watchIncrementAsync() {
   yield takeEvery(incrementCounter.toString(), incrementAsync)
 }
 
-// notice how we now only export the rootSaga
-// single entry point to start all Sagas at once
-export function * rootSaga () {
+export function* rootSaga() {
   yield all([
     watchIncrementAsync()
   ])
