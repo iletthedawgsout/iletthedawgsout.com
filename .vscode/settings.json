@@ -1,5 +1,9 @@
 {
     "eslint.alwaysShowStatus": true,
     "eslint.lintTask.enable": true,
-    "eslint.run": "onSave"
+    "eslint.run": "onSave",
+    "python.pythonPath": "venv/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": ["--load-plugins", "pylint_django", "--disable", "missing-docstring"],
+    "python.linting.enabled": true
 }
