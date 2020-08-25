@@ -38,3 +38,14 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    publish_date = models.DateTimeField('publish date', default=timezone.now)
+    last_modified_date = models.DateTimeField('last modified date', auto_now=True)
+    description = models.TextField(blank=True)
+    upvotes = models.IntegerField(default=0, blank=True)
+    published = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
