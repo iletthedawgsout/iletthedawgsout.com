@@ -4,9 +4,9 @@ import sys
 
 if __name__ == '__main__':
     if os.environ.get('DJANGO_ENV') == 'production':
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'azuresite.production')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'iletthedawgsout.production')
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'azuresite.settings')    
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'iletthedawgsout.settings')    
 
     try:
         from django.core.management import execute_from_command_line
