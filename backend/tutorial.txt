@@ -1,5 +1,0 @@
-az postgres up --resource-group iletthedawgsout --location westus2 --sku-name B_Gen5_1 --server-name iletthedawgsoutpostgres --database-name pollsdb --admin-user luis --admin-password rHcSmkzj3by4JsLD --ssl-enforcement Enabled
-
-az webapp up --resource-group iletthedawgsout --location westus2 --plan iletthedawgsout-service-plan --sku B1 --name iletthedawgsout
-
-az webapp config appsettings set --settings DJANGO_ENV="production" DBHOST="iletthedawgsoutpostgres.postgres.database.azure.com" DBNAME="pollsdb" DBUSER="luis@iletthedawgsoutpostgres" DBPASS="rHcSmkzj3by4JsLD"
