@@ -1,5 +1,5 @@
 """
-WSGI config for iletthedawgsout project.
+WSGI config for azuresite project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,8 +12,8 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 if os.environ.get('DJANGO_ENV') == 'production':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'iletthedawgsout.production')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'azuresite.production')
 else:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'iletthedawgsout.settings')    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'azuresite.settings')    
 
 application = get_wsgi_application()
