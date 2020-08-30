@@ -3,10 +3,10 @@ import { RootAction } from './actions';
 
 export const reducer = (previousState: GlobalState, action: RootAction): GlobalState => {
     switch (action.type) {
-        case 'UPDATE_COUNTER':
+        case "FETCH_POSTS_COMPLETE":
             return {
-                counter: 0,
-            };
+                postList: action.postList
+            }
         default:
             return previousState;
     }

@@ -6,7 +6,7 @@ import { RootAction } from './actions';
 
 // The initial value of our global state object
 const initialGlobalState: GlobalState = {
-    counter: 1,
+    postList: undefined
 };
 // The initial value of our dispatch function. Will get overwritten on first render
 const initialDispatch = () => {

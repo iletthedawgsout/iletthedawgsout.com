@@ -1,8 +1,11 @@
-export const UPDATE_COUNTER = 'UPDATE_COUNTER';
+import { PostList } from "../services/blog-posts";
 
-interface UpdateCounter {
-    type: typeof UPDATE_COUNTER;
-    newValue: number;
+export const FECH_POSTS_COMPLETE = "FETCH_POSTS_COMPLETE";
+
+interface FetchPostsComplete {
+    type: typeof FECH_POSTS_COMPLETE;
+    postList: PostList
 }
 
-export type RootAction = UpdateCounter;
+export type RootAction = 
+    | FetchPostsComplete;
