@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import { About, BlackLivesMatter, Blog } from "./Pages";
+import { GlobalStateContextProvider } from './GlobalState/GlobalStateContext';
 
 const Header = () => (
   <div>
@@ -45,13 +46,15 @@ const Content = () => (
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <Header />
-        <NavBar />
-        <Content />
-      </div>
-    </Router>
+    <GlobalStateContextProvider>
+      <Router>
+        <div>
+          <Header />
+          <NavBar />
+          <Content />
+        </div>
+      </Router>
+    </GlobalStateContextProvider>
   );
 }
 
