@@ -1,3 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchBlogPosts, PostList } from '../services/blog-posts';
 
-export const Blog = (): JSX.Element => <p>Blog</p>;
+export const Blog = (): JSX.Element => {
+    const [posts, setPosts] = useState<PostList>();
+    useEffect(() => {
+        fetchBlogPosts().then(setPosts);
+    }, []);
+
+    if (posts) {
+        const list = posts.results.map((post, i) => <p key={i}>{post.title}</p>);
+        return <div>{list}</div>;
+    }
+    return <p>Blog</p>;
+};
