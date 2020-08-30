@@ -51,7 +51,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx tsc"
+      "pre-commit": "npx tsc && npm run format"
     }
-  }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+        "npm run format"
+    ]
+}
 }
