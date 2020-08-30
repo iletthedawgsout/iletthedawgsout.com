@@ -5,7 +5,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { About, BlackLivesMatter, Blog } from "./Pages";
+import { About, BlackLivesMatter, Blog } from "./pages";
+import { Provider } from 'react-redux'
+import { store } from "./redux/createStore";
 
 const Header = () => (
   <div>
@@ -45,13 +47,15 @@ const Content = () => (
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <Header />
-        <NavBar />
-        <Content />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Header />
+          <NavBar />
+          <Content />
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
