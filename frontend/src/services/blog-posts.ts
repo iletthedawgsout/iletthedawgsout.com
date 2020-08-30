@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const HOST_NAME = 'https://iletthedawgsout.azurewebsites.net';
+let HOST_NAME = 'https://iletthedawgsout.azurewebsites.net';
+HOST_NAME = 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/posts`;
 
 export interface Post {
@@ -23,9 +24,14 @@ export interface PostList {
 export const fetchBlogPosts = (): Promise<PostList> =>
     axios
         .get<PostList>(POST_ENDPOINT)
-        .then((response) => response.data)
-        .catch((error) => console.log(JSON.stringify(error)))
-        .then(() => ({
-            count: 0,
-            results: [],
-        }));
+        .then((response) => {
+            console.log(JSON.stringify(response));
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            return {
+                count: 0,
+                results: [],
+            };
+        });

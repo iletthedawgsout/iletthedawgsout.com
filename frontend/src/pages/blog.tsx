@@ -7,6 +7,8 @@ export const Blog = (): JSX.Element => {
         fetchBlogPosts().then(setPosts);
     }, []);
 
+    console.log(JSON.stringify(posts));
+
     if (posts) {
         const list = posts.results.map((post, i) => <p key={i}>{post.title}</p>);
         return <div>{list}</div>;
