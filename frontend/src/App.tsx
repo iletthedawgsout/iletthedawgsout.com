@@ -44,7 +44,7 @@ const Content = () => (
   </Switch>
 );
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <GlobalStateContextProvider>
       <Router>

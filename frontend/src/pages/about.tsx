@@ -1,4 +1,4 @@
 import React from "react";
 
-export const About = () => <p>About me</p>;
+export const About = (): JSX.Element => <p>About me</p>;
 

@@ -9,18 +9,20 @@ const initialGlobalState: GlobalState = {
   counter: 1
 };
 // The initial value of our dispatch function. Will get overwritten on first render
-const initialDispatch = () => {};
+const initialDispatch = () => {
+  return;
+};
 
-export const GlobalStateContext = createContext<
-  [GlobalState, React.Dispatch<RootAction>]
->([initialGlobalState, initialDispatch]);
-export const useGlobalState = () => useContext(GlobalStateContext); // Convenience hook for functional components
+type Context = [GlobalState, React.Dispatch<RootAction>];
 
-type GlobalStateContextProps = PropsWithChildren<{}>;
+export const GlobalStateContext = createContext<Context>([initialGlobalState, initialDispatch]);
+export const useGlobalState = (): Context => useContext(GlobalStateContext); // Convenience hook for functional components
+
+type GlobalStateContextProps = PropsWithChildren<unknown>;
 
 export const GlobalStateContextProvider = ({
   children,
-}: GlobalStateContextProps) => {
+}: GlobalStateContextProps): JSX.Element => {
   const reduction = useReducer(reducer, initialGlobalState);
   return (
     <GlobalStateContext.Provider value={reduction}>

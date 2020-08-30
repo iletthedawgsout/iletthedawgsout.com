@@ -1,4 +1,4 @@
 import React from "react";
 
-export const Blog = () => <p>Black lives matter</p>;
+export const Blog = (): JSX.Element => <p>Black lives matter</p>;
 
