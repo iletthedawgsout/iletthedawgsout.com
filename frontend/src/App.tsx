@@ -5,8 +5,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { About, BlackLivesMatter, Blog } from "./Pages";
-import { GlobalStateContextProvider } from './GlobalState/GlobalStateContext';
+import { About, BlackLivesMatter, Blog } from "./pages";
+import { GlobalStateContextProvider } from './global-state/GlobalStateContext';
 
 const Header = () => (
   <div>
