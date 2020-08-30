@@ -1,16 +1,16 @@
-import React, {createContext, useContext, useReducer} from 'react';
-import {PropsWithChildren} from 'react';
-import {GlobalState} from './models';
-import {reducer} from './reducer';
-import {RootAction} from './actions';
+import React, { createContext, useContext, useReducer } from 'react';
+import { PropsWithChildren } from 'react';
+import { GlobalState } from './models';
+import { reducer } from './reducer';
+import { RootAction } from './actions';
 
 // The initial value of our global state object
 const initialGlobalState: GlobalState = {
-  counter: 1
+    counter: 1,
 };
 // The initial value of our dispatch function. Will get overwritten on first render
 const initialDispatch = () => {
-  return;
+    return;
 };
 
 type Context = [GlobalState, React.Dispatch<RootAction>];
@@ -20,13 +20,7 @@ export const useGlobalState = (): Context => useContext(GlobalStateContext); // 
 
 type GlobalStateContextProps = PropsWithChildren<unknown>;
 
-export const GlobalStateContextProvider = ({
-  children,
-}: GlobalStateContextProps): JSX.Element => {
-  const reduction = useReducer(reducer, initialGlobalState);
-  return (
-    <GlobalStateContext.Provider value={reduction}>
-      {children}
-    </GlobalStateContext.Provider>
-  );
+export const GlobalStateContextProvider = ({ children }: GlobalStateContextProps): JSX.Element => {
+    const reduction = useReducer(reducer, initialGlobalState);
+    return <GlobalStateContext.Provider value={reduction}>{children}</GlobalStateContext.Provider>;
 };
