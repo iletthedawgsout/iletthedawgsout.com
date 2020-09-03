@@ -11,7 +11,7 @@ app.use((req, res, next) => {
 
 app.get('/posts', (req, res) => {
     console.log(`Making request on behalf of ${req.baseUrl}`);
-    request({ url: 'https://iletthedawgsout.azurewebsites.net/posts' }, (error, response, body) => {
+    request({ url: 'https://api.iletthedawgsout.com/posts' }, (error, response, body) => {
         if (error || response.statusCode !== 200) {
             return res.status(500).json({ type: 'error', message: err.message });
         }

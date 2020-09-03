@@ -22,6 +22,7 @@ jobs:
 
     - name: npm install, build, and test
       run: |
+        cd frontend
         npm install
         npm run build --if-present
         npm run test --if-present
@@ -32,4 +33,4 @@ jobs:
         app-name: 'iletthedawgsoutfrontend'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_3a1d59eac0dc4c2e80018c164b29f8ca }}
-        package: .
+        package: frontend/build

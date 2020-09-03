@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
-let HOST_NAME = 'https://iletthedawgsout.azurewebsites.net';
+let HOST_NAME = 'https://api.iletthedawgsout.com';
 HOST_NAME = 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/posts`;
 
@@ -51,4 +51,4 @@ export const useFetchBlogPosts = () => {
         }
     }, [dispatch, postList]);
     return postList;
-}
+};
