@@ -4,7 +4,7 @@ import { useGlobalState } from '../global-state/GlobalStateContext';
 
 let HOST_NAME = 'https://iletthedawgsout.azurewebsites.net';
 HOST_NAME = 'http://localhost:8001';
-const POST_ENDPOINT = `${HOST_NAME}/posts`;
+const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
 export interface Post {
     url: string;
