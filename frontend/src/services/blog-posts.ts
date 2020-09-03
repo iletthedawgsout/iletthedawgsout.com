@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useEffect } from 'react';
+import { useGlobalState } from '../global-state/GlobalStateContext';
 
 let HOST_NAME = 'https://iletthedawgsout.azurewebsites.net';
 HOST_NAME = 'http://localhost:8001';
@@ -35,3 +37,18 @@ export const fetchBlogPosts = (): Promise<PostList> =>
                 results: [],
             };
         });
+
+export const useFetchBlogPosts = () => {
+    const [{ postList }, dispatch] = useGlobalState();
+    useEffect(() => {
+        if (!postList) {
+            fetchBlogPosts().then((posts) =>
+                dispatch({
+                    type: 'FETCH_POSTS_COMPLETE',
+                    postList: posts,
+                }),
+            );
+        }
+    }, [dispatch, postList]);
+    return postList;
+}

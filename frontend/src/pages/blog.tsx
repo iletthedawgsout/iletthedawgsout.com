@@ -1,19 +1,8 @@
-import React, { useEffect } from 'react';
-import { useGlobalState } from '../global-state/GlobalStateContext';
-import { fetchBlogPosts } from '../services/blog-posts';
+import React from 'react';
+import { useFetchBlogPosts } from '../services/blog-posts';
 
 export const Blog = (): JSX.Element => {
-    const [{ postList }, dispatch] = useGlobalState();
-    useEffect(() => {
-        if (!postList) {
-            fetchBlogPosts().then((posts) =>
-                dispatch({
-                    type: 'FETCH_POSTS_COMPLETE',
-                    postList: posts,
-                }),
-            );
-        }
-    }, [dispatch, postList]);
+    const postList = useFetchBlogPosts();
 
     if (postList) {
         const list = postList.results.map((post, i) => <p key={i}>{post.title}</p>);
