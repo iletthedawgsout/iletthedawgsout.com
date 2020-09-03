@@ -51,4 +51,4 @@ export const useFetchBlogPosts = () => {
         }
     }, [dispatch, postList]);
     return postList;
-}
+};
