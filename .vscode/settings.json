@@ -5,5 +5,8 @@
     "python.pythonPath": "backend/venv/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": ["--load-plugins", "pylint_django", "--disable", "missing-docstring"],
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "staticWebApps.appSubpath": "frontend",
+    "staticWebApps.apiSubpath": "",
+    "staticWebApps.appArtifactSubpath": "build"
 }
