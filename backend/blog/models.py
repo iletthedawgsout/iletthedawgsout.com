@@ -10,7 +10,7 @@ class Post(models.Model):
     publish_date = models.DateTimeField('date published', default=timezone.now)
     visible = models.BooleanField(default=False)
     # image = models.ImageField()
-    content = models.TextField(blank=True)
+    source = models.URLField()
     last_edited = models.DateTimeField(auto_now=True)
     upvotes = models.IntegerField(blank=True, default=0)
 
