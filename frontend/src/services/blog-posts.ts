@@ -38,7 +38,7 @@ export const fetchBlogPosts = (): Promise<PostList> =>
             };
         });
 
-export const useFetchBlogPosts = () => {
+export const useFetchBlogPosts = (): PostList | undefined => {
     const [{ postList }, dispatch] = useGlobalState();
     useEffect(() => {
         if (!postList) {
