@@ -2,9 +2,10 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
-let HOST_NAME = 'https://api.iletthedawgsout.com';
-HOST_NAME = 'http://localhost:8001';
+const HOST_NAME = process.env.NODE_ENV === "production" ? 'https://api.iletthedawgsout.com' : 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/posts`;
+
+console.log(`HOST_NAME: ${HOST_NAME}`);
 
 export interface Post {
     url: string;
