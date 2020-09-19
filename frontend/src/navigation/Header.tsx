@@ -4,6 +4,9 @@ import { StyleSheet } from '../models';
 const styles: StyleSheet = {
     header: {
         flex: 1,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     },
 };
 
