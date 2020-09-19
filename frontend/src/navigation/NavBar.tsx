@@ -7,23 +7,21 @@ type Props = Readonly<{
 }>;
 
 const CustomLink = ({ label, to }: Props) => {
-    let { pathname } = useLocation();
+    const { pathname } = useLocation();
     const match = pathname === to;
 
     return (
-        <div className={match ? "active" : ""}>
-            {match && "> "}
+        <div className={match ? 'active' : ''}>
+            {match && '> '}
             <Link to={to}>{label}</Link>
         </div>
     );
 };
 
-
 export const NavBar = (): JSX.Element => {
-
     return (
-        <nav style={{ flex: 1, borderStyle: "dotted" }}>
-            <ul style={{ listStyleType: "none" }}>
+        <nav style={{ flex: 1, borderStyle: 'dotted' }}>
+            <ul style={{ listStyleType: 'none' }}>
                 <li>
                     <CustomLink to="/" label="Blog" />
                 </li>
