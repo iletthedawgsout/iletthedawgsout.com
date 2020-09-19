@@ -1,17 +1,18 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useEffect } from 'react';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
-let HOST_NAME = 'https://api.iletthedawgsout.com';
-HOST_NAME = 'http://localhost:8001';
+const HOST_NAME = process.env.NODE_ENV === 'production' ? 'https://api.iletthedawgsout.com' : 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/posts`;
+
+console.log(`HOST_NAME: ${HOST_NAME}`);
 
 export interface Post {
     url: string;
     title: string;
     publish_date: Date;
     visible: boolean;
-    content: string;
+    source: string;
     last_edited: Date;
     upvotes: number;
 }
@@ -26,8 +27,7 @@ export interface PostList {
 export const fetchBlogPosts = (): Promise<PostList> =>
     axios
         .get<PostList>(POST_ENDPOINT)
-        .then((response) => {
-            console.log(JSON.stringify(response));
+        .then((response: AxiosResponse<PostList>) => {
             return response.data;
         })
         .catch((error) => {

@@ -13,7 +13,7 @@ const initialDispatch = () => {
     return;
 };
 
-type Context = [GlobalState, React.Dispatch<RootAction>];
+export type Context = [GlobalState, React.Dispatch<RootAction>];
 
 export const GlobalStateContext = createContext<Context>([initialGlobalState, initialDispatch]);
 export const useGlobalState = (): Context => useContext(GlobalStateContext); // Convenience hook for functional components
