@@ -45,19 +45,18 @@ interface Message {
 }
 
 export const fetchTestMessage = (): Promise<unknown> =>
-axios
-    .get<unknown>(TEST_HOST_NAME)
-    .then((response: AxiosResponse<unknown>) => {
-        return response.data;
-    })
-    .catch((error) => {
-        console.log(JSON.stringify(error));
-        return {
-            count: 0,
-            results: [],
-        };
-    });
-
+    axios
+        .get<unknown>(TEST_HOST_NAME)
+        .then((response: AxiosResponse<unknown>) => {
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            return {
+                count: 0,
+                results: [],
+            };
+        });
 
 export const useFetchBlogPosts = (): PostList | undefined => {
     const [{ postList }, dispatch] = useGlobalState();

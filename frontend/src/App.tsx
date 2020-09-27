@@ -23,12 +23,8 @@ const Content = () => (
 );
 
 export default function App(): JSX.Element {
-
-
     useEffect(() => {
-        fetchTestMessage()
-            .then(console.log)
-            .catch(console.warn);
+        fetchTestMessage().then(console.log).catch(console.warn);
     });
 
     return (
