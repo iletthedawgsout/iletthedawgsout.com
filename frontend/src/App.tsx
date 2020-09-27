@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { About, BlackLivesMatter, Blog } from './pages';
 import { GlobalStateContextProvider } from './global-state/GlobalStateContext';
 import { ContentContainer, Header, NavBar, RootContainer } from './navigation';
+import { fetchTestMessage } from './services/blog-posts';
 
 const Content = () => (
     <div style={{ flex: 9 }}>
@@ -22,6 +23,14 @@ const Content = () => (
 );
 
 export default function App(): JSX.Element {
+
+
+    useEffect(() => {
+        fetchTestMessage()
+            .then(console.log)
+            .catch(console.warn);
+    });
+
     return (
         <GlobalStateContextProvider>
             <Router>
