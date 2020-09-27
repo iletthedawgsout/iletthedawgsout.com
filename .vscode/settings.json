@@ -2,4 +2,10 @@
     "eslint.alwaysShowStatus": true,
     "eslint.lintTask.enable": true,
     "eslint.run": "onSave",
+    "azureFunctions.deploySubpath": "backend",
+    "azureFunctions.postDeployTask": "npm install",
+    "azureFunctions.projectLanguage": "TypeScript",
+    "azureFunctions.projectRuntime": "~3",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "npm prune",
 }
