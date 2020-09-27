@@ -2,7 +2,4 @@
     "eslint.alwaysShowStatus": true,
     "eslint.lintTask.enable": true,
     "eslint.run": "onSave",
-    "staticWebApps.appSubpath": "frontend",
-    "staticWebApps.apiSubpath": "",
-    "staticWebApps.appArtifactSubpath": "build"
 }
