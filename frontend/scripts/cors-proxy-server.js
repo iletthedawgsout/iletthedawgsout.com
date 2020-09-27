@@ -21,18 +21,6 @@ app.get('/posts', (req, res) => {
     });
 });
 
-app.get('/api/message', (req, res) => {
-    console.log(`Making request on behalf of ${req.baseUrl}`);
-    request({ url: 'http://localhost:7071/api/message' }, (error, response, body) => {
-        if (error || response.statusCode !== 200) {
-            return res.status(500).json({ type: 'error', message: err.message });
-        }
-
-        console.log(`Passing request through to ${req.baseUrl}`);
-        res.json(JSON.parse(body));
-    });
-});
-
 app.get('/api/posts', (req, res) => {
     console.log(`Making request on behalf of ${req.baseUrl}`);
     request({ url: 'http://localhost:7071/api/posts' }, (error, response, body) => {
