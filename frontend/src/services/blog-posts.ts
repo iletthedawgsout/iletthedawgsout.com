@@ -5,6 +5,8 @@ import { useGlobalState } from '../global-state/GlobalStateContext';
 const HOST_NAME = process.env.NODE_ENV === 'production' ? 'https://api.iletthedawgsout.com' : 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/posts`;
 
+const TEST_HOST_NAME = process.env.NODE_ENV === 'production' ? '/api/message' : 'http://localhost:8001/api/message';
+
 console.log(`HOST_NAME: ${HOST_NAME}`);
 
 export interface Post {
@@ -28,6 +30,24 @@ export const fetchBlogPosts = (): Promise<PostList> =>
     axios
         .get<PostList>(POST_ENDPOINT)
         .then((response: AxiosResponse<PostList>) => {
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            return {
+                count: 0,
+                results: [],
+            };
+        });
+
+interface Message {
+    message: string;
+}
+
+export const fetchTestMessage = (): Promise<unknown> =>
+    axios
+        .get<unknown>(TEST_HOST_NAME)
+        .then((response: AxiosResponse<unknown>) => {
             return response.data;
         })
         .catch((error) => {

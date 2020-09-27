@@ -2,11 +2,10 @@
     "eslint.alwaysShowStatus": true,
     "eslint.lintTask.enable": true,
     "eslint.run": "onSave",
-    "python.pythonPath": "backend/venv/bin/python",
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": ["--load-plugins", "pylint_django", "--disable", "missing-docstring"],
-    "python.linting.enabled": true,
-    "staticWebApps.appSubpath": "frontend",
-    "staticWebApps.apiSubpath": "",
-    "staticWebApps.appArtifactSubpath": "build"
+    "azureFunctions.deploySubpath": "backend",
+    "azureFunctions.postDeployTask": "npm install",
+    "azureFunctions.projectLanguage": "TypeScript",
+    "azureFunctions.projectRuntime": "~3",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "npm prune",
 }
