@@ -5,7 +5,7 @@ import { useGlobalState } from '../global-state/GlobalStateContext';
 const HOST_NAME = process.env.NODE_ENV === 'production' ? 'https://api.iletthedawgsout.com' : 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/posts`;
 
-const TEST_HOST_NAME = process.env.NODE_ENV === 'production' ? '/api/message' : 'http://localhost:8001/api/message';
+const TEST_HOST_NAME = process.env.NODE_ENV === 'production' ? '/api/posts' : 'http://localhost:8001/api/posts';
 
 console.log(`HOST_NAME: ${HOST_NAME}`);
 
