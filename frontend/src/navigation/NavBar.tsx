@@ -22,7 +22,7 @@ export const NavBar = (): JSX.Element => {
     return (
         <nav style={{ flex: 1, paddingLeft: 10, borderStyle: 'dotted' }}>
             <i className="fas fa-bars fa-2x"></i>
-            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+            <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
                 <li>
                     <CustomLink to="/" label="Blog" />
                 </li>
