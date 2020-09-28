@@ -1,5 +1,5 @@
-import { PostList } from '../services/blog-posts';
+import { Post } from '../services/blog-posts';
 
 export type GlobalState = Readonly<{
-    postList?: PostList;
+    postList?: Post[];
 }>;

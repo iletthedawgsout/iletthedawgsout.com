@@ -21,9 +21,9 @@ app.get('/posts', (req, res) => {
     });
 });
 
-app.get('/api/message', (req, res) => {
+app.get('/api/posts', (req, res) => {
     console.log(`Making request on behalf of ${req.baseUrl}`);
-    request({ url: 'http://localhost:7071/api/message' }, (error, response, body) => {
+    request({ url: 'http://localhost:7071/api/posts' }, (error, response, body) => {
         if (error || response.statusCode !== 200) {
             return res.status(500).json({ type: 'error', message: err.message });
         }
