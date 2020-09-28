@@ -10,8 +10,9 @@ const styles: StyleSheet = {
     },
     karma: {
         borderStyle: 'solid',
-        width: 50, height: 50
-    }
+        width: 50,
+        height: 50,
+    },
 };
 
 type Props = Readonly<{
@@ -19,13 +20,19 @@ type Props = Readonly<{
 }>;
 
 export const BlogPost = ({ post }: Props): JSX.Element => {
-    return <div style={styles.container}>
-        <p>{post.title}</p>
-        <div style={styles.upvotes}>
-            <b>{ post.upvotes }</b>
+    return (
+        <div style={styles.container}>
+            <p>{post.title}</p>
+            <div style={styles.upvotes}>
+                <b>{post.upvotes}</b>
+            </div>
+            <a href="#">
+                <i className="fas fa-arrow-alt-circle-up fa-2x"></i>
+            </a>
+            <a href="#">
+                <i className="fas fa-arrow-alt-circle-down fa-2x"></i>
+            </a>
         </div>
-        <a href="#"><i className="fas fa-arrow-alt-circle-up fa-2x"></i></a>
-        <a href="#"><i className="fas fa-arrow-alt-circle-down fa-2x"></i></a>
-    </div>;
+    );
     return <p>{post.title}</p>;
 };
