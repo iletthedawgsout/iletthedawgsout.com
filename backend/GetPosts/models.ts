@@ -7,7 +7,3 @@ export interface Post {
     last_edited: string;
     upvotes: number;
 }
-
-export interface PostList {
-    posts: Post[];
-}
