@@ -5,9 +5,11 @@ import { BlogPost } from './BlogPost';
 export const Blog = (): JSX.Element => {
     const postList = useFetchBlogPosts();
 
+    console.log('BLOG');
+    console.log(postList);
+
     if (postList) {
-        const { results } = postList;
-        const list = results.map((post, i) => <BlogPost post={post} key={i} />);
+        const list = postList.map((post, i) => <BlogPost post={post} key={i} />);
         return <div>{list}</div>;
     }
     return <p>Blog</p>;

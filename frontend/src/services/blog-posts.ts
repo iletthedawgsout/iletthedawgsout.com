@@ -2,63 +2,33 @@ import axios, { AxiosResponse } from 'axios';
 import { useEffect } from 'react';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
-const HOST_NAME = process.env.NODE_ENV === 'production' ? 'https://api.iletthedawgsout.com' : 'http://localhost:8001';
-const POST_ENDPOINT = `${HOST_NAME}/posts`;
+const HOST_NAME = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001';
+const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
-const TEST_HOST_NAME = process.env.NODE_ENV === 'production' ? '/api/posts' : 'http://localhost:8001/api/posts';
-
-console.log(`HOST_NAME: ${HOST_NAME}`);
+console.log(`POST_ENDPOINT: ${POST_ENDPOINT}`);
 
 export interface Post {
-    url: string;
+    id: string;
     title: string;
-    publish_date: Date;
+    publish_date: string;
     visible: boolean;
     source: string;
-    last_edited: Date;
+    last_edited: string;
     upvotes: number;
 }
 
-export interface PostList {
-    count: number;
-    next?: number;
-    previous?: null;
-    results: Post[];
-}
-
-export const fetchBlogPosts = (): Promise<PostList> =>
+export const fetchBlogPosts = (): Promise<Post[]> =>
     axios
-        .get<PostList>(POST_ENDPOINT)
-        .then((response: AxiosResponse<PostList>) => {
+        .get<Post[]>(POST_ENDPOINT)
+        .then((response: AxiosResponse<Post[]>) => {
             return response.data;
         })
         .catch((error) => {
             console.log(JSON.stringify(error));
-            return {
-                count: 0,
-                results: [],
-            };
+            return [];
         });
 
-interface Message {
-    message: string;
-}
-
-export const fetchTestMessage = (): Promise<unknown> =>
-    axios
-        .get<unknown>(TEST_HOST_NAME)
-        .then((response: AxiosResponse<unknown>) => {
-            return response.data;
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            return {
-                count: 0,
-                results: [],
-            };
-        });
-
-export const useFetchBlogPosts = (): PostList | undefined => {
+export const useFetchBlogPosts = (): Post[] | undefined => {
     const [{ postList }, dispatch] = useGlobalState();
     useEffect(() => {
         if (!postList) {

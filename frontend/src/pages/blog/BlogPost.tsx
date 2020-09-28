@@ -6,5 +6,5 @@ type Props = Readonly<{
 }>;
 
 export const BlogPost = ({ post }: Props): JSX.Element => {
-    return <p>{post.source}</p>;
+    return <p>{post.title}</p>;
 };
