@@ -6,18 +6,14 @@ const styles: StyleSheet = {
     container: {
         flex: 1,
         display: 'flex',
-        flexDirection: "column",
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        
-        borderStyle: "solid",
-    },
-    title: {
 
+        borderStyle: 'solid',
     },
-    publish_date: {
-        
-    }
+    title: {},
+    publish_date: {},
 };
 
 type Props = Readonly<{
@@ -25,9 +21,11 @@ type Props = Readonly<{
 }>;
 
 export const BlogPost = ({ post }: Props): JSX.Element => {
-    return <div style={styles.container}>
-        <p style={styles.title}>{post.title}</p>
-        <p style={styles.publish_date}>{post.publish_date}</p>
-        <p>{ post.source }</p>
-    </div>;
+    return (
+        <div style={styles.container}>
+            <p style={styles.title}>{post.title}</p>
+            <p style={styles.publish_date}>{post.publish_date.toLocaleDateString()}</p>
+            <p>{post.source}</p>
+        </div>
+    );
 };

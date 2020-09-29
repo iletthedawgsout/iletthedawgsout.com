@@ -7,7 +7,7 @@ const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
 console.log(`POST_ENDPOINT: ${POST_ENDPOINT}`);
 
-export interface Post {
+interface PostResponse {
     id: string;
     title: string;
     publish_date: string;
@@ -17,12 +17,27 @@ export interface Post {
     upvotes: number;
 }
 
+export interface Post {
+    id: string;
+    title: string;
+    publish_date: Date;
+    visible: boolean;
+    source: string;
+    last_edited: Date;
+    upvotes: number;
+}
+
+const mapToPost = (postResponse: PostResponse): Post => ({
+    ...postResponse,
+    publish_date: new Date(postResponse.publish_date),
+    last_edited: new Date(postResponse.last_edited),
+});
+
 export const fetchBlogPosts = (): Promise<Post[]> =>
     axios
-        .get<Post[]>(POST_ENDPOINT)
-        .then((response: AxiosResponse<Post[]>) => {
-            return response.data;
-        })
+        .get<PostResponse[]>(POST_ENDPOINT)
+        .then((response: AxiosResponse<PostResponse[]>) => response.data)
+        .then((postResponse) => postResponse.map(mapToPost))
         .catch((error) => {
             console.log(JSON.stringify(error));
             return [];
