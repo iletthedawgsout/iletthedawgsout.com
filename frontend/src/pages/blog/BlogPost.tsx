@@ -1,6 +1,9 @@
 import React from 'react';
 import { Post } from '../../services/blog-posts';
 import { StyleSheet } from '../../models';
+import ReactMarkdown from 'react-markdown';
+
+const input = '# This is a header\n\nAnd this is a paragraph';
 
 const styles: StyleSheet = {
     container: {
@@ -26,6 +29,7 @@ export const BlogPost = ({ post }: Props): JSX.Element => {
             <p style={styles.title}>{post.title}</p>
             <p style={styles.publish_date}>{post.publish_date.toLocaleDateString()}</p>
             <p>{post.source}</p>
+            <ReactMarkdown source={input} />
         </div>
     );
 };
