@@ -48,26 +48,24 @@ export const fetchBlogPosts = (): Promise<Post[]> =>
         });
 
 export const fetchMarkdown = (post: Post): Promise<string> =>
-    axios
-        .get<string>(post.source)
-        .then((response: AxiosResponse<string>) => response.data);
+    axios.get<string>(post.source).then((response: AxiosResponse<string>) => response.data);
 
 export const useFetchBlogPosts = (): Post[] | undefined => {
     const [{ postList }, dispatch] = useGlobalState();
     useEffect(() => {
         if (!postList) {
             fetchBlogPosts().then((posts) => {
-                posts.forEach(post => {
-                    fetchMarkdown(post).then(markdown => {
+                posts.forEach((post) => {
+                    fetchMarkdown(post).then((markdown) => {
                         dispatch({
                             type: FECH_POST_COMPLETE,
                             post: {
                                 ...post,
-                                markdown
+                                markdown,
                             },
                         });
                     });
-                })
+                });
             });
         }
     }, [dispatch, postList]);
