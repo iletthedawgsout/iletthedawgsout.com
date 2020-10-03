@@ -5,6 +5,5 @@ export interface Post {
     visible: boolean;
     imagePath: string;
     markdownPath: string;
-    last_edited: string;
     upvotes: number;
 }

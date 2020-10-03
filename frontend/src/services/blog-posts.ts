@@ -13,7 +13,6 @@ interface PostResponse {
     visible: boolean;
     imagePath: string;
     markdownPath: string;
-    last_edited: string;
     upvotes: number;
 }
 
@@ -23,7 +22,6 @@ export interface Post {
     publish_date: Date;
     visible: boolean;
     imageUrl: string;
-    last_edited: Date;
     upvotes: number;
 
     // Markdown source
@@ -36,7 +34,6 @@ const mapToPost = (postResponse: PostResponse): Post => ({
     publish_date: new Date(postResponse.publish_date),
     visible: postResponse.visible,
     imageUrl: `https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${postResponse.imagePath}`,
-    last_edited: new Date(postResponse.last_edited),
     upvotes: postResponse.upvotes,
     markdownSource: postResponse.markdownPath,
 });
