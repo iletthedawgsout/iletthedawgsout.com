@@ -6,14 +6,13 @@ import { HOST_NAME } from './utils';
 
 const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
-console.log(`POST_ENDPOINT: ${POST_ENDPOINT}`);
-
 interface PostResponse {
     id: string;
     title: string;
     publish_date: string;
     visible: boolean;
-    source: string;
+    imagePath: string;
+    markdownPath: string;
     last_edited: string;
     upvotes: number;
 }
@@ -23,18 +22,23 @@ export interface Post {
     title: string;
     publish_date: Date;
     visible: boolean;
-    source: string;
+    imageUrl: string;
     last_edited: Date;
     upvotes: number;
 
-    markdown?: string;
+    // Markdown source
+    markdownSource: string;
 }
 
 const mapToPost = (postResponse: PostResponse): Post => ({
-    ...postResponse,
     id: parseInt(postResponse.id, 10),
+    title: postResponse.title,
     publish_date: new Date(postResponse.publish_date),
+    visible: postResponse.visible,
+    imageUrl: `https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${postResponse.imagePath}`,
     last_edited: new Date(postResponse.last_edited),
+    upvotes: postResponse.upvotes,
+    markdownSource: postResponse.markdownPath,
 });
 
 export const fetchBlogPosts = (): Promise<Post[]> =>
@@ -47,8 +51,10 @@ export const fetchBlogPosts = (): Promise<Post[]> =>
             return [];
         });
 
-export const fetchMarkdown = (post: Post): Promise<string> =>
-    axios.get<string>(post.source).then((response: AxiosResponse<string>) => response.data);
+export const fetchMarkdownSource = (post: Post): Promise<string> =>
+    axios
+        .get<string>(`https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${post.markdownSource}`)
+        .then((response: AxiosResponse<string>) => response.data);
 
 const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
     let posts: Post[] = [];
@@ -62,9 +68,9 @@ const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
     }
 
     for (const post of posts) {
-        let markdown;
+        let markdownSource = post.markdownSource;
         try {
-            markdown = await fetchMarkdown(post);
+            markdownSource = await fetchMarkdownSource(post);
         } catch (error) {
             dispatch({
                 type: FETCH_POST_FAILED,
@@ -76,7 +82,7 @@ const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
             type: FECH_POST_COMPLETE,
             post: {
                 ...post,
-                markdown,
+                markdownSource,
             },
         });
     }

@@ -3,7 +3,8 @@ export interface Post {
     title: string;
     publish_date: string;
     visible: boolean;
-    source: string;
+    imagePath: string;
+    markdownPath: string;
     last_edited: string;
     upvotes: number;
 }
