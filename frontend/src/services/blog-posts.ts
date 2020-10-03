@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { useEffect } from 'react';
-import { FECH_POST_COMPLETE } from '../global-state/actions';
+import { FECH_POST_COMPLETE, FETCH_POST_FAILED, RootAction } from '../global-state/actions';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
 const HOST_NAME = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001';
@@ -50,23 +50,43 @@ export const fetchBlogPosts = (): Promise<Post[]> =>
 export const fetchMarkdown = (post: Post): Promise<string> =>
     axios.get<string>(post.source).then((response: AxiosResponse<string>) => response.data);
 
+const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
+    let posts: Post[] = [];
+    try {
+        posts = await fetchBlogPosts();
+    } catch (error) {
+        dispatch({
+            type: FETCH_POST_FAILED,
+            error,
+        });
+    }
+
+    for (const post of posts) {
+        let markdown;
+        try {
+            markdown = await fetchMarkdown(post);
+        } catch (error) {
+            dispatch({
+                type: FETCH_POST_FAILED,
+                error,
+            });
+        }
+
+        dispatch({
+            type: FECH_POST_COMPLETE,
+            post: {
+                ...post,
+                markdown,
+            },
+        });
+    }
+};
+
 export const useFetchBlogPosts = (): Post[] | undefined => {
     const [{ postList }, dispatch] = useGlobalState();
     useEffect(() => {
         if (!postList) {
-            fetchBlogPosts().then((posts) => {
-                posts.forEach((post) => {
-                    fetchMarkdown(post).then((markdown) => {
-                        dispatch({
-                            type: FECH_POST_COMPLETE,
-                            post: {
-                                ...post,
-                                markdown,
-                            },
-                        });
-                    });
-                });
-            });
+            compositeFetch(dispatch);
         }
     }, [dispatch, postList]);
     return postList;
