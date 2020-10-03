@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import { useEffect } from 'react';
 import { FECH_POST_COMPLETE, FETCH_POST_FAILED, RootAction } from '../global-state/actions';
 import { useGlobalState } from '../global-state/GlobalStateContext';
+import { HOST_NAME } from './utils';
 
-const HOST_NAME = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001';
 const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
 console.log(`POST_ENDPOINT: ${POST_ENDPOINT}`);
