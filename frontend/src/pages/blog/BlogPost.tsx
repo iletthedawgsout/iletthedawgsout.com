@@ -28,8 +28,7 @@ export const BlogPost = ({ post }: Props): JSX.Element => {
         <div style={styles.container}>
             <p style={styles.title}>{post.title}</p>
             <p style={styles.publish_date}>{post.publish_date.toLocaleDateString()}</p>
-            <p>{post.source}</p>
-            <ReactMarkdown source={input} />
+            {post.markdown && <ReactMarkdown source={post.markdown} /> }
         </div>
     );
 };

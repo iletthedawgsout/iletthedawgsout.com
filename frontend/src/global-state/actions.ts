@@ -1,10 +1,10 @@
 import { Post } from '../services/blog-posts';
 
-export const FECH_POSTS_COMPLETE = 'FETCH_POSTS_COMPLETE';
+export const FECH_POST_COMPLETE = 'FETCH_POST_COMPLETE';
 
-interface FetchPostsComplete {
-    type: typeof FECH_POSTS_COMPLETE;
-    postList: Post[];
+interface FetchPostComplete {
+    type: typeof FECH_POST_COMPLETE;
+    post: Post;
 }
 
-export type RootAction = FetchPostsComplete;
+export type RootAction = FetchPostComplete;

@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { useEffect } from 'react';
+import { FECH_POST_COMPLETE } from '../global-state/actions';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
 const HOST_NAME = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8001';
@@ -18,17 +19,20 @@ interface PostResponse {
 }
 
 export interface Post {
-    id: string;
+    id: number;
     title: string;
     publish_date: Date;
     visible: boolean;
     source: string;
     last_edited: Date;
     upvotes: number;
+
+    markdown?: string;
 }
 
 const mapToPost = (postResponse: PostResponse): Post => ({
     ...postResponse,
+    id: parseInt(postResponse.id, 10),
     publish_date: new Date(postResponse.publish_date),
     last_edited: new Date(postResponse.last_edited),
 });
@@ -43,16 +47,28 @@ export const fetchBlogPosts = (): Promise<Post[]> =>
             return [];
         });
 
+export const fetchMarkdown = (post: Post): Promise<string> =>
+    axios
+        .get<string>(post.source)
+        .then((response: AxiosResponse<string>) => response.data);
+
 export const useFetchBlogPosts = (): Post[] | undefined => {
     const [{ postList }, dispatch] = useGlobalState();
     useEffect(() => {
         if (!postList) {
-            fetchBlogPosts().then((posts) =>
-                dispatch({
-                    type: 'FETCH_POSTS_COMPLETE',
-                    postList: posts,
-                }),
-            );
+            fetchBlogPosts().then((posts) => {
+                posts.forEach(post => {
+                    fetchMarkdown(post).then(markdown => {
+                        dispatch({
+                            type: FECH_POST_COMPLETE,
+                            post: {
+                                ...post,
+                                markdown
+                            },
+                        });
+                    });
+                })
+            });
         }
     }, [dispatch, postList]);
     return postList;
