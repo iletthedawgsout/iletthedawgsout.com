@@ -4,7 +4,7 @@ import { FETCH_BLACK_LIVES_MATTER_COMPLETE, FETCH_BLACK_LIVES_MATTER_FAILED } fr
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
 const ENDPOINT =
-    'https://raw.githubusercontent.com/iletthedawgsout/iletthedawgsout.com/blog-ui/frontend/public/black_lives_matter/black_lives_matter.md';
+    '/black_lives_matter/black_lives_matter.md';
 
 const fetchBlackLivesMatter = (): Promise<string> => axios.get(ENDPOINT).then((response) => response.data);
 

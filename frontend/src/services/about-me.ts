@@ -4,7 +4,7 @@ import { FETCH_ABOUT_ME_COMPLETE, FETCH_ABOUT_ME_FAILED } from '../global-state/
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
 const ENDPOINT =
-    'https://raw.githubusercontent.com/iletthedawgsout/iletthedawgsout.com/blog-ui/frontend/public/about_me/about_me.md';
+    '/about_me/about_me.md';
 
 const fetchAboutMe = (): Promise<string> => axios.get(ENDPOINT).then((response) => response.data);
 
