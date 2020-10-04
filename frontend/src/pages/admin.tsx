@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {
+    ChangeEventHandler,
+    Dispatch,
+    FormEventHandler,
+    SetStateAction,
+    SyntheticEvent,
+    useCallback,
+    useState,
+} from 'react';
 import { Link } from 'react-router-dom';
 import { StyleSheet } from '../models';
 import { RootContainer } from '../navigation';
 import { useFetchBlogPosts } from '../services/blog-posts';
-import { IS_PROD } from '../utils';
+import { updatePost } from '../services/admin';
 
 const styles: StyleSheet = {
     container: {
@@ -46,15 +54,50 @@ const ViewPosts = () => {
     return <ul>{items}</ul>;
 };
 
-const endpoint = IS_PROD ? '/api/posts' : 'http://localhost:8001/api/posts';
+function useTextInputState<T>(defaultValue: T): [T, ChangeEventHandler] {
+    const [value, setValue] = useState<T>(defaultValue);
+    const setter = useCallback((event: any) => setValue(event.target.value), [setValue]);
+    return [value, setter];
+}
+
+function useCheckboxInputState<T>(defaultValue: T): [T, ChangeEventHandler] {
+    const [value, setValue] = useState<T>(defaultValue);
+    const setter = useCallback((event: any) => setValue(event.target.checked), [setValue]);
+    return [value, setter];
+}
 
 const PostMaker = () => {
+    const [title, setTitle] = useTextInputState('Example title');
+    const [publish_date, setPublishDate] = useTextInputState('2018-01-01');
+    const [visible, setVisible] = useCheckboxInputState(false);
+    const [imageAltText, setImageAltText] = useTextInputState('An example image');
+    const [relativeImagePath, setRelativeImagePath] = useTextInputState('/');
+    const [relativeMarkdownPath, setRelativeMarkdownPath] = useTextInputState('/');
+
+    const onSubmit: FormEventHandler = useCallback(
+        (event) => {
+            event.preventDefault();
+            const post = {
+                title,
+                publish_date,
+                visible,
+                imageAltText,
+                relativeImagePath,
+                relativeMarkdownPath,
+                upvotes: 0,
+            };
+            console.log(post);
+            updatePost(post);
+        },
+        [title, publish_date, visible, imageAltText, relativeImagePath, relativeMarkdownPath],
+    );
+
     return (
-        <form action={endpoint} method="post">
+        <form onSubmit={onSubmit}>
             <ul>
                 <li>
                     <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" name="title" value="Example title" />
+                    <input type="text" id="title" name="title" value={title} onChange={setTitle} />
                 </li>
 
                 <li>
@@ -63,31 +106,49 @@ const PostMaker = () => {
                         type="date"
                         id="publish_date"
                         name="publish_date"
-                        value="2018-07-22"
+                        value={publish_date}
                         min="2018-01-01"
                         max="2018-12-31"
-                        onChange={console.log}
+                        onChange={setPublishDate}
                     />
                 </li>
 
                 <li>
                     <label htmlFor="visible">Visible</label>
-                    <input type="checkbox" id="visible" name="visible" onChange={console.log} />
+                    <input type="checkbox" id="visible" name="visible" checked={visible} onChange={setVisible} />
                 </li>
 
                 <li>
                     <label htmlFor="imgAltText">Image alt text: </label>
-                    <input type="text" id="imgAltText" name="imgAltText" value="An image" />
+                    <input
+                        type="text"
+                        id="imgAltText"
+                        name="imgAltText"
+                        value={imageAltText}
+                        onChange={setImageAltText}
+                    />
                 </li>
 
                 <li>
                     <label htmlFor="relativeImagePath">relativeImagePath: </label>
-                    <input type="text" id="relativeImagePath" name="relativeImagePath" value="/" />
+                    <input
+                        type="text"
+                        id="relativeImagePath"
+                        name="relativeImagePath"
+                        value={relativeImagePath}
+                        onChange={setRelativeImagePath}
+                    />
                 </li>
 
                 <li>
                     <label htmlFor="relativeMarkdownPath">relativeMarkdownPath: </label>
-                    <input type="text" id="relativeMarkdownPath" name="relativeMarkdownPath" value="/" />
+                    <input
+                        type="text"
+                        id="relativeMarkdownPath"
+                        name="relativeMarkdownPath"
+                        value={relativeMarkdownPath}
+                        onChange={setRelativeMarkdownPath}
+                    />
                 </li>
             </ul>
 

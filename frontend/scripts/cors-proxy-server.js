@@ -8,6 +8,7 @@ app.use(express.json()) // for parsing application/json
 app.use((req, res, next) => {
     console.log(`Appending CORS header to ${req.baseUrl}`);
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'content-type');
     next();
 });
 
