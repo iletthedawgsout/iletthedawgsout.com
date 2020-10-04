@@ -22,7 +22,6 @@ type Props = Readonly<{
 }>;
 
 export const BlogPost = ({ post }: Props): JSX.Element => {
-    console.log(post.markdownSource);
     return (
         <div style={styles.container}>
             <p style={styles.title}>{post.title}</p>
