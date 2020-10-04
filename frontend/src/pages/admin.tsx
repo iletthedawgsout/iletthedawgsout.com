@@ -67,12 +67,16 @@ function useCheckboxInputState<T>(defaultValue: T): [T, ChangeEventHandler] {
 }
 
 const PostMaker = () => {
-    const [title, setTitle] = useTextInputState('Example title');
-    const [publish_date, setPublishDate] = useTextInputState('2018-01-01');
+    const [title, setTitle] = useTextInputState('All Dawgs Go To Heaven');
+    const [publish_date, setPublishDate] = useTextInputState('2018-01-01'); // TODO
     const [visible, setVisible] = useCheckboxInputState(true);
-    const [imageAltText, setImageAltText] = useTextInputState('An example image');
-    const [relativeImagePath, setRelativeImagePath] = useTextInputState('/');
-    const [relativeMarkdownPath, setRelativeMarkdownPath] = useTextInputState('/');
+    const [imageAltText, setImageAltText] = useTextInputState('Graph of win percentages for UW live mascots');
+    const [relativeImagePath, setRelativeImagePath] = useTextInputState(
+        'all_dawgs_go_to_heaven/all_dawgs_go_to_heaven.jpg',
+    );
+    const [relativeMarkdownPath, setRelativeMarkdownPath] = useTextInputState(
+        'all_dawgs_go_to_heaven/all_dawgs_go_to_heaven.md',
+    );
 
     const onSubmit: FormEventHandler = useCallback(
         (event) => {

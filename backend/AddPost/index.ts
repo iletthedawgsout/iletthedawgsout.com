@@ -35,6 +35,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     context.res = {
         body: data
     };
+
+    context.bindings.posts = JSON.stringify(data);
 };
 
 export default httpTrigger;

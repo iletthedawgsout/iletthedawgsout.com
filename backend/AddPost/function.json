@@ -11,6 +11,15 @@
         "route": "posts"
       },
       {
+        "type": "cosmosDB",
+        "name": "posts",
+        "databaseName": "I Let The Dawgs Out",
+        "collectionName": "Blog Posts",
+        "createIfNotExists": true,
+        "connectionStringSetting": "CosmosDBConnection",
+        "direction": "out",
+      },
+      {
         "type": "http",
         "direction": "out",
         "name": "res"
