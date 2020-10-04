@@ -4,6 +4,7 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { About, BlackLivesMatter, Blog, Admin } from './pages';
 import { GlobalStateContextProvider } from './global-state/GlobalStateContext';
 import { ContentContainer, Header, NavBar, RootContainer } from './navigation';
+import { IS_DEV } from './utils';
 
 const Content = () => (
     <div style={{ flex: 9 }}>
@@ -37,9 +38,12 @@ export default function App(): JSX.Element {
             <Router>
                 <RootContainer>
                     <Switch>
-                        <Route path="/admin">
-                            <Admin />
-                        </Route>
+                        {IS_DEV && (
+                            <Route path="/admin">
+                                <Admin />
+                            </Route>
+                        )}
+
                         <Route path="/">
                             <Home />
                         </Route>
