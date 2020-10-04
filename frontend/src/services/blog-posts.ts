@@ -11,6 +11,7 @@ interface PostResponse {
     title: string;
     publish_date: string;
     visible: boolean;
+    imageAltText?: string;
     relativeImagePath: string;
     relativeMarkdownPath: string;
     upvotes: number;
@@ -21,6 +22,7 @@ export interface Post {
     title: string;
     publish_date: Date;
     visible: boolean;
+    imageAltText?: string;
     imageUrl: string;
     upvotes: number;
 
@@ -33,6 +35,7 @@ const mapToPost = (postResponse: PostResponse, markdownSource: string): Post => 
     title: postResponse.title,
     publish_date: new Date(postResponse.publish_date),
     visible: postResponse.visible,
+    imageAltText: postResponse.imageAltText,
     imageUrl: `https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${postResponse.relativeImagePath}`,
     upvotes: postResponse.upvotes,
     markdownSource,
