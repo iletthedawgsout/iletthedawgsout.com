@@ -17,27 +17,16 @@ interface PostResponse {
     upvotes: number;
 }
 
-export interface Post {
-    id: number;
-    title: string;
+export type Post = Omit<PostResponse, 'publish_date'> & {
     publish_date: Date;
-    visible: boolean;
-    imageAltText?: string;
     imageUrl: string;
-    upvotes: number;
-
-    // Markdown source
     markdownSource: string;
-}
+};
 
 const mapToPost = (postResponse: PostResponse, markdownSource: string): Post => ({
-    id: parseInt(postResponse.id, 10),
-    title: postResponse.title,
+    ...postResponse,
     publish_date: new Date(postResponse.publish_date),
-    visible: postResponse.visible,
-    imageAltText: postResponse.imageAltText,
     imageUrl: `https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${postResponse.relativeImagePath}`,
-    upvotes: postResponse.upvotes,
     markdownSource,
 });
 
