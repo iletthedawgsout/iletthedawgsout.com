@@ -6,15 +6,13 @@ import { HOST_NAME } from './utils';
 
 const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
-console.log(`POST_ENDPOINT: ${POST_ENDPOINT}`);
-
 interface PostResponse {
     id: string;
     title: string;
     publish_date: string;
     visible: boolean;
-    source: string;
-    last_edited: string;
+    relativeImagePath: string;
+    relativeMarkdownPath: string;
     upvotes: number;
 }
 
@@ -23,37 +21,41 @@ export interface Post {
     title: string;
     publish_date: Date;
     visible: boolean;
-    source: string;
-    last_edited: Date;
+    imageUrl: string;
     upvotes: number;
 
-    markdown?: string;
+    // Markdown source
+    markdownSource: string;
 }
 
-const mapToPost = (postResponse: PostResponse): Post => ({
-    ...postResponse,
+const mapToPost = (postResponse: PostResponse, markdownSource: string): Post => ({
     id: parseInt(postResponse.id, 10),
+    title: postResponse.title,
     publish_date: new Date(postResponse.publish_date),
-    last_edited: new Date(postResponse.last_edited),
+    visible: postResponse.visible,
+    imageUrl: `https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${postResponse.relativeImagePath}`,
+    upvotes: postResponse.upvotes,
+    markdownSource,
 });
 
-export const fetchBlogPosts = (): Promise<Post[]> =>
+export const fetchBlogPosts = (): Promise<PostResponse[]> =>
     axios
         .get<PostResponse[]>(POST_ENDPOINT)
         .then((response: AxiosResponse<PostResponse[]>) => response.data)
-        .then((postResponse) => postResponse.map(mapToPost))
         .catch((error) => {
             console.log(JSON.stringify(error));
             return [];
         });
 
-export const fetchMarkdown = (post: Post): Promise<string> =>
-    axios.get<string>(post.source).then((response: AxiosResponse<string>) => response.data);
+export const fetchMarkdownSource = (post: PostResponse): Promise<string> =>
+    axios
+        .get<string>(`https://raw.githubusercontent.com/iletthedawgsout/blogposts/master/${post.relativeMarkdownPath}`)
+        .then((response: AxiosResponse<string>) => response.data);
 
 const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
-    let posts: Post[] = [];
+    let postResponses: PostResponse[] = [];
     try {
-        posts = await fetchBlogPosts();
+        postResponses = await fetchBlogPosts();
     } catch (error) {
         dispatch({
             type: FETCH_POST_FAILED,
@@ -61,10 +63,10 @@ const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
         });
     }
 
-    for (const post of posts) {
-        let markdown;
+    for (const postResponse of postResponses) {
+        let markdownSource = '';
         try {
-            markdown = await fetchMarkdown(post);
+            markdownSource = await fetchMarkdownSource(postResponse);
         } catch (error) {
             dispatch({
                 type: FETCH_POST_FAILED,
@@ -72,12 +74,11 @@ const compositeFetch = async (dispatch: React.Dispatch<RootAction>) => {
             });
         }
 
+        const post = mapToPost(postResponse, markdownSource);
+
         dispatch({
             type: FECH_POST_COMPLETE,
-            post: {
-                ...post,
-                markdown,
-            },
+            post,
         });
     }
 };

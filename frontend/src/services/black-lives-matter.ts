@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { FETCH_BLACK_LIVES_MATTER_COMPLETE, FETCH_BLACK_LIVES_MATTER_FAILED } from '../global-state/actions';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
-const ENDPOINT =
-    '/black_lives_matter/black_lives_matter.md';
+const ENDPOINT = '/black_lives_matter/black_lives_matter.md';
 
 const fetchBlackLivesMatter = (): Promise<string> => axios.get(ENDPOINT).then((response) => response.data);
 

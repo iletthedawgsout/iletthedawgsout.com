@@ -26,7 +26,8 @@ export const BlogPost = ({ post }: Props): JSX.Element => {
         <div style={styles.container}>
             <p style={styles.title}>{post.title}</p>
             <p style={styles.publish_date}>{post.publish_date.toLocaleDateString()}</p>
-            {post.markdown && <ReactMarkdown source={post.markdown} />}
+            <img src={post.imageUrl} width="500" height="600"></img>
+            {post.markdownSource && <ReactMarkdown source={post.markdownSource} />}
         </div>
     );
 };

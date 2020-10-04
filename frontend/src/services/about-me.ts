@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { FETCH_ABOUT_ME_COMPLETE, FETCH_ABOUT_ME_FAILED } from '../global-state/actions';
 import { useGlobalState } from '../global-state/GlobalStateContext';
 
-const ENDPOINT =
-    '/about_me/about_me.md';
+const ENDPOINT = '/about_me/about_me.md';
 
 const fetchAboutMe = (): Promise<string> => axios.get(ENDPOINT).then((response) => response.data);
 
