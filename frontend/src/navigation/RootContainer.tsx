@@ -1,5 +1,6 @@
-import React, { PropsWithChildren } from 'react';
+import React, { CSSProperties, PropsWithChildren } from 'react';
 import { StyleSheet } from '../models';
+import { combineStyles } from '../utils';
 
 const styles: StyleSheet = {
     container: {
@@ -10,6 +11,11 @@ const styles: StyleSheet = {
     },
 };
 
-export const RootContainer = ({ children }: PropsWithChildren<unknown>): JSX.Element => (
-    <div style={styles.container}>{children}</div>
-);
+type Props = Readonly<{
+    style?: CSSProperties;
+}>;
+
+export const RootContainer = ({ children, style }: PropsWithChildren<Props>): JSX.Element => {
+    const combinedStyle = combineStyles(styles.container, style);
+    return <div style={combinedStyle}>{children}</div>;
+};

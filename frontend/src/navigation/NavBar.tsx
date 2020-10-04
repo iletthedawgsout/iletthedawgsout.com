@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { IS_DEV } from '../utils';
 
 type Props = Readonly<{
     label: string;
@@ -32,6 +33,11 @@ export const NavBar = (): JSX.Element => {
                 <li>
                     <CustomLink to="/about" label="About" />
                 </li>
+                {IS_DEV && (
+                    <li>
+                        <CustomLink to="/admin" label="Admin" />
+                    </li>
+                )}
             </ul>
         </nav>
     );
