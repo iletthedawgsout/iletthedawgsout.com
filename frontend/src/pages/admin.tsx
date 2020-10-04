@@ -69,7 +69,7 @@ function useCheckboxInputState<T>(defaultValue: T): [T, ChangeEventHandler] {
 const PostMaker = () => {
     const [title, setTitle] = useTextInputState('Example title');
     const [publish_date, setPublishDate] = useTextInputState('2018-01-01');
-    const [visible, setVisible] = useCheckboxInputState(false);
+    const [visible, setVisible] = useCheckboxInputState(true);
     const [imageAltText, setImageAltText] = useTextInputState('An example image');
     const [relativeImagePath, setRelativeImagePath] = useTextInputState('/');
     const [relativeMarkdownPath, setRelativeMarkdownPath] = useTextInputState('/');
