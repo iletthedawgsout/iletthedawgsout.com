@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { StyleSheet } from '../models';
 import { RootContainer } from '../navigation';
 import { useFetchBlogPosts } from '../services/blog-posts';
+import { IS_PROD } from '../utils';
 
 const styles: StyleSheet = {
     container: {
@@ -45,13 +46,15 @@ const ViewPosts = () => {
     return <ul>{items}</ul>;
 };
 
+const endpoint = IS_PROD ? '/api/posts' : 'http://localhost:8001/api/posts';
+
 const PostMaker = () => {
     return (
-        <form action="/my-handling-form-page" method="post">
+        <form action={endpoint} method="post">
             <ul>
                 <li>
                     <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" name="title" />
+                    <input type="text" id="title" name="title" value="Example title" />
                 </li>
 
                 <li>
@@ -74,17 +77,17 @@ const PostMaker = () => {
 
                 <li>
                     <label htmlFor="imgAltText">Image alt text: </label>
-                    <input type="text" id="imgAltText" name="imgAltText" />
+                    <input type="text" id="imgAltText" name="imgAltText" value="An image" />
                 </li>
 
                 <li>
                     <label htmlFor="relativeImagePath">relativeImagePath: </label>
-                    <input type="text" id="relativeImagePath" name="relativeImagePath" />
+                    <input type="text" id="relativeImagePath" name="relativeImagePath" value="/" />
                 </li>
 
                 <li>
                     <label htmlFor="relativeMarkdownPath">relativeMarkdownPath: </label>
-                    <input type="text" id="relativeMarkdownPath" name="relativeMarkdownPath" />
+                    <input type="text" id="relativeMarkdownPath" name="relativeMarkdownPath" value="/" />
                 </li>
             </ul>
 
