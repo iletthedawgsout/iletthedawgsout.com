@@ -18,7 +18,7 @@ interface PostResponse {
 }
 
 export interface Post {
-    id: number;
+    id: string;
     title: string;
     publish_date: Date;
     visible: boolean;
@@ -31,7 +31,7 @@ export interface Post {
 }
 
 const mapToPost = (postResponse: PostResponse, markdownSource: string): Post => ({
-    id: parseInt(postResponse.id, 10),
+    id: postResponse.id,
     title: postResponse.title,
     publish_date: new Date(postResponse.publish_date),
     visible: postResponse.visible,
