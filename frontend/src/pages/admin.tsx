@@ -18,8 +18,26 @@ const ViewPosts = () => {
         <li key={i}>
             {post.title}
             <ul>
-                <li>{post.publish_date.toString()}</li>
-                <li>{post.imageUrl}</li>
+                <li>
+                    <b>Publish date: </b>
+                    {post.publish_date.toString()}
+                </li>
+                <li>
+                    <b>Image path: </b>
+                    {post.relativeImagePath}
+                </li>
+                <li>
+                    <b>Markdown path: </b>
+                    {post.relativeMarkdownPath}
+                </li>
+                <li>
+                    <b>Alt image text: </b>
+                    {post.imageAltText}
+                </li>
+                <li>
+                    <b>Id: </b>
+                    {post.id}
+                </li>
             </ul>
         </li>
     ));
