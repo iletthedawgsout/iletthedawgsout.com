@@ -1,0 +1,30 @@
+{
+    "bindings": [
+      {
+        "authLevel": "anonymous",
+        "type": "httpTrigger",
+        "direction": "in",
+        "name": "req",
+        "methods": [
+          "post"
+        ],
+        "route": "posts"
+      },
+      {
+        "type": "cosmosDB",
+        "name": "posts",
+        "databaseName": "I Let The Dawgs Out",
+        "collectionName": "Blog Posts",
+        "createIfNotExists": true,
+        "connectionStringSetting": "CosmosDBConnection",
+        "direction": "out",
+      },
+      {
+        "type": "http",
+        "direction": "out",
+        "name": "res"
+      }
+    ],
+    "scriptFile": "../dist/AddPost/index.js"
+  }
+  

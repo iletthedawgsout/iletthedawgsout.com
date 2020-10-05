@@ -6,7 +6,7 @@ import { HOST_NAME } from './utils';
 
 const POST_ENDPOINT = `${HOST_NAME}/api/posts`;
 
-interface PostResponse {
+export interface PostResponse {
     id: string;
     title: string;
     publish_date: string;

@@ -7,11 +7,12 @@
     "watch": "tsc -w",
     "prestart": "npm run build",
     "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "submitPost": "http -f POST  http://localhost:8001/api/posts title='Example post' publish_date='date' visible='true' imgAltText='an image' relativeImagePath='/' relativeMarkdownPath='/' --json"
   },
   "dependencies": {},
   "devDependencies": {
     "@azure/functions": "^1.0.2-beta2",
+    "httpie": "^1.1.2",
     "typescript": "^3.3.3"
   }
 }
