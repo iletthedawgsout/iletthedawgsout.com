@@ -1,9 +1,4 @@
-import React, {
-    ChangeEventHandler,
-    FormEventHandler,
-    useCallback,
-    useState,
-} from 'react';
+import React, { ChangeEventHandler, FormEventHandler, useCallback, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StyleSheet } from '../models';
 import { RootContainer } from '../navigation';
@@ -53,19 +48,42 @@ const ViewPosts = () => {
 
 function useTextInputState<T>(defaultValue: T): [T, ChangeEventHandler] {
     const [value, setValue] = useState<T>(defaultValue);
-    const setter = useCallback((event: any) => setValue(event.target.value), [setValue]);
+    const setter = useCallback((event) => setValue(event.target.value), [setValue]);
     return [value, setter];
 }
 
 function useCheckboxInputState<T>(defaultValue: T): [T, ChangeEventHandler] {
     const [value, setValue] = useState<T>(defaultValue);
-    const setter = useCallback((event: any) => setValue(event.target.checked), [setValue]);
+    const setter = useCallback((event) => setValue(event.target.checked), [setValue]);
     return [value, setter];
 }
 
+const getDateString = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
 const PostMaker = () => {
+    const calendarRange = useMemo(() => {
+        const now = Date.now();
+
+        const oneYearAgo = new Date(now);
+        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
+        const oneYearFromNow = new Date(now);
+        oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+
+        return {
+            defaultDate: getDateString(new Date(now)),
+            minDate: getDateString(oneYearAgo),
+            maxDate: getDateString(oneYearFromNow),
+        };
+    }, []);
+
     const [title, setTitle] = useTextInputState('All Dawgs Go To Heaven');
-    const [publish_date, setPublishDate] = useTextInputState('2018-01-01'); // TODO
+    const [publish_date, setPublishDate] = useTextInputState(calendarRange.defaultDate);
     const [visible, setVisible] = useCheckboxInputState(true);
     const [imageAltText, setImageAltText] = useTextInputState('Graph of win percentages for UW live mascots');
     const [relativeImagePath, setRelativeImagePath] = useTextInputState(
@@ -107,9 +125,9 @@ const PostMaker = () => {
                         type="date"
                         id="publish_date"
                         name="publish_date"
-                        value={publish_date}
-                        min="2018-01-01"
-                        max="2018-12-31"
+                        value={calendarRange.defaultDate}
+                        min={calendarRange.minDate}
+                        max={calendarRange.maxDate}
                         onChange={setPublishDate}
                     />
                 </li>
