@@ -98,7 +98,7 @@ const PostMaker = () => {
             event.preventDefault();
             const post = {
                 title,
-                publish_date,
+                publish_date: `${publish_date}T00:00:00`, // convert date-only form to date-time form which gets parsed as local time
                 visible,
                 imageAltText,
                 relativeImagePath,
