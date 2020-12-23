@@ -14,11 +14,16 @@
 		"configurations": [],
 		"compounds": [
 			{
-				"name": "Launch Backend & Frontend",
+				"name": "Launch backend and frontend dev servers",
 				"configurations": [
 					"Launch Azure Functions",
 					"Launch packager and cors"
-				]
+				],
+				"presentation": {
+					"hidden": false,
+					"group": "",
+					"order": 0
+				}
 			}
 		]
 	}

@@ -15,10 +15,13 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "type": "pwa-node"
+            "type": "pwa-node",
+            "presentation": {
+                "hidden": true,
+                "group": "",
+                "order": 1
+            }
         },
-        
-        
         {
             "name": "Launch Chrome Debugger",
             "request": "launch",
