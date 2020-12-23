@@ -20,7 +20,8 @@
                 "hidden": true,
                 "group": "",
                 "order": 1
-            }
+            },
+            "preLaunchTask": "npm install"
         },
         {
             "name": "Launch Chrome Debugger",
