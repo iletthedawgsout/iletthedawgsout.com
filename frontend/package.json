@@ -18,12 +18,13 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "cross-env BROWSER=none react-scripts start",
+    "start": "concurrently \"npm run packager\" \"npm run cors\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "npm run lint -- --fix",
+    "packager": "cross-env BROWSER=none react-scripts start",
     "cors": "node scripts/cors-proxy-server.js"
   },
   "eslintConfig": {
