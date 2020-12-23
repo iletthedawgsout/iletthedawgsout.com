@@ -14,9 +14,10 @@
 		"configurations": [],
 		"compounds": [
 			{
-				"name": "Launch Server & Client",
+				"name": "Launch Backend & Frontend",
 				"configurations": [
-					"Launch Server"
+					"Launch Azure Functions",
+					"Launch Chrome Debugger"
 				]
 			}
 		]

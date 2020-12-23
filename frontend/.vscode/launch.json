@@ -5,12 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Chrome",
+            "name": "Launch Chrome Debugger",
             "request": "launch",
             "type": "pwa-chrome",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "npm: start"
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
