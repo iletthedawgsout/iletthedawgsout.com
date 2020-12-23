@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"name": "Front end",
+			"path": "../frontend"
+		},
+		{
+			"name": "Back end",
+			"path": "../backend"
+		}
+	],
+	"settings": {},
+	"launch": {
+		"configurations": [],
+		"compounds": [
+			{
+				"name": "Launch Server & Client",
+				"configurations": [
+					"Launch Server"
+				]
+			}
+		]
+	}
+}
