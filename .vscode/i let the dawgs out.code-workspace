@@ -17,7 +17,7 @@
 				"name": "Launch Backend & Frontend",
 				"configurations": [
 					"Launch Azure Functions",
-					"Launch Chrome Debugger"
+					"Launch packager and cors"
 				]
 			}
 		]
