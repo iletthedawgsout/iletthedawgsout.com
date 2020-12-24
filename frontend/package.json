@@ -18,14 +18,15 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "concurrently \"npm run packager\" \"npm run cors\"",
+    "start": "concurrently --names 'PACKAGER,CORS SERVER' --prefix-colors 'yellow,blue' --kill-others 'npm run packager' 'npm run cors'",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "npm run lint -- --fix",
     "packager": "cross-env BROWSER=none react-scripts start",
-    "cors": "node scripts/cors-proxy-server.js"
+    "cors": "node scripts/cors-proxy-server.js",
+    "validate": "concurrently --names 'TYPESCRIPT,LINTING,UNIT TESTS' --prefix-colors 'yellow,blue,green' 'npx tsc' 'npm run lint' 'npm run test -- --watchAll==false'"
   },
   "eslintConfig": {
     "extends": "react-app"

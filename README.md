@@ -75,7 +75,7 @@ You should be able to view logs in realtime in VS Code, as well as set breakpoin
 
 # Deploying your changes to production
 
-1. (Optional) Make sure that unit tests, lintint, and typescript all pass locally
-2. Open a PR against the master branch. This will result in a temporary staging URL being created where you can test your changes in an integration environment for validation purposes.
+1. (Optional) Make sure that unit tests, lintint, and typescript all pass locally. Run ```npm run validate``` in the frontend and backend folders and make sure all of the processes terminate with exit code 0 (success).
+2. Open a PR against the master branch. This will result in a temporary staging URL being created where you can test your changes in an integration environment for validation purposes. If you skipped the first step and it turns out there were errors, they should be caught in this step in the form of the staging environment failing and blocking your PR.
 3. Once you're ready to deploy to prod, just complete your PR. The Github actions will automatically handle deployment.
 4. Monitor for issues
