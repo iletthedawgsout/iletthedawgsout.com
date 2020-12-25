@@ -17,8 +17,8 @@
             ],
             "type": "pwa-node",
             "presentation": {
-                "hidden": true,
-                "group": "",
+                "hidden": false,
+                "group": "c",
                 "order": 1
             },
             "preLaunchTask": "npm install"
@@ -28,7 +28,12 @@
             "request": "launch",
             "type": "pwa-chrome",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "presentation": {
+                "hidden": false,
+                "group": "b",
+                "order": 1
+            }
         }
     ]
 }
