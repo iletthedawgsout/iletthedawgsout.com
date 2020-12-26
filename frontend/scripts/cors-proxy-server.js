@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint no-use-before-define: 0 */ // --> OFF
+
 const express = require('express');
 const request = require('request');
 
 const app = express();
 
-app.use(express.json()) // for parsing application/json
+app.use(express.json()); // for parsing application/json
 
 app.use((req, res, next) => {
     console.log(`Appending CORS header to ${req.baseUrl}`);
@@ -43,18 +46,18 @@ app.post('/api/posts', (req, res) => {
     request.post(
         'http://localhost:7071/api/posts',
         {
-          json: req.body,
+            json: req.body,
         },
         (error, res2, body) => {
-          if (error) {
-            console.error(error)
-            return
-          }
-          console.log(`statusCode: ${res.statusCode}`)
-          console.log(body)
-          res.json(body);
-        }
-      )
+            if (error) {
+                console.error(error);
+                return;
+            }
+            console.log(`statusCode: ${res.statusCode}`);
+            console.log(body);
+            res.json(body);
+        },
+    );
 });
 
 const PORT = process.env.PORT || 8001;

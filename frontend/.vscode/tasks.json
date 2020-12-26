@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": [],
+            "label": "npm: start",
+            "detail": "Start the packager in VS Code",
+        },
+        {
+            "type": "shell",
+            "label": "npm install",
+            "command": "npm install"
+        },
+    ]
+}
