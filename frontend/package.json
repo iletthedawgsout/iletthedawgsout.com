@@ -26,7 +26,7 @@
     "format": "npm run lint -- --fix",
     "packager": "cross-env BROWSER=none react-scripts start",
     "cors": "node scripts/cors-proxy-server.js",
-    "validate": "concurrently --names 'TYPESCRIPT,LINTING,UNIT TESTS' --prefix-colors 'yellow,blue,green' 'npx tsc' 'npm run lint' 'npm run test -- --watchAll==false'"
+    "validate": "concurrently --names \"TYPESCRIPT,LINTING,UNIT TESTS\" --prefix-colors \"yellow,blue,green\" \"npx tsc\" \"npm run lint\" \"npm run test -- --watchAll==false\""
   },
   "eslintConfig": {
     "extends": "react-app"
