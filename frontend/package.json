@@ -9,7 +9,7 @@
     "@types/jest": "^24.9.1",
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
@@ -18,7 +18,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "concurrently --names 'PACKAGER,CORS SERVER' --prefix-colors 'yellow,blue' --kill-others 'npm run packager' 'npm run cors'",
+    "start": "concurrently --names \"PACKAGER,CORS SERVER\" --prefix-colors \"yellow,blue\" --kill-others \"npm run packager\" \"npm run cors\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -26,7 +26,7 @@
     "format": "npm run lint -- --fix",
     "packager": "cross-env BROWSER=none react-scripts start",
     "cors": "node scripts/cors-proxy-server.js",
-    "validate": "concurrently --names 'TYPESCRIPT,LINTING,UNIT TESTS' --prefix-colors 'yellow,blue,green' 'npx tsc' 'npm run lint' 'npm run test -- --watchAll==false'"
+    "validate": "concurrently --names \"TYPESCRIPT,LINTING,UNIT TESTS\" --prefix-colors \"yellow,blue,green\" \"npx tsc\" \"npm run lint\" \"npm run test -- --watchAll==false\""
   },
   "eslintConfig": {
     "extends": "react-app"
