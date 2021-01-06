@@ -18,7 +18,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "concurrently --names 'PACKAGER,CORS SERVER' --prefix-colors 'yellow,blue' --kill-others 'npm run packager' 'npm run cors'",
+    "start": "concurrently --names \"PACKAGER,CORS SERVER\" --prefix-colors \"yellow,blue\" --kill-others \"npm run packager\" \"npm run cors\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
